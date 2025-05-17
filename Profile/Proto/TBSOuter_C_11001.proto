@@ -1,0 +1,114 @@
+syntax = "proto3";
+package ET;
+
+
+// ResponseType G2C_Match
+message C2G_Match // ISessionRequest
+{
+  int32 RpcId = 1;
+}
+
+message G2C_Match // ISessionResponse
+{
+  int32 RpcId = 1;
+  int32 Error = 2;
+  string Message = 3;
+}
+
+// ResponseType G2C_CancelMatch
+message C2G_CancelMatch // ISessionRequest
+{
+  int32 RpcId = 1;
+}
+
+message G2C_CancelMatch // ISessionResponse
+{
+  int32 RpcId = 1;
+  int32 Error = 2;
+  string Message = 3;
+}
+
+/// 匹配成功，通知客户端切换场景
+message Match2G_NotifyMatchSuccess // IMessage
+{
+  int32 RpcId = 1;
+  /// 房间的ActorId
+  ActorId ActorId = 2;
+}
+
+/// 客户端通知房间切换场景完成
+message C2Room_ChangeSceneFinish // IRoomMessage
+{
+  int64 PlayerId = 1;
+}
+
+message TBSUnitInfo
+{
+  int64 PlayerId = 1;
+}
+
+/// 房间通知客户端进入战斗
+message Room2C_Start // IMessage
+{
+  int64 StartTime = 1;
+  repeated TBSUnitInfo UnitInfo = 2;
+}
+message G2C_Reconnect // IMessage
+{
+  // 房间的ActorId
+  ActorId ActorId = 2;
+}
+
+
+
+// 服务器通知客户端回合开始
+message Room2C_RoundStart // IMessage
+{
+  int32 Round = 1;
+  int32 TurnCountdown = 2; // 回合倒计时，单位：秒
+  map<int64, int32> Score = 3; // 分数
+}
+
+// 客户端通知服务器开始战斗
+message C2Room_StartBattle  // IRoomMessage
+{
+  int32 RpcId = 90;
+  int64 PlayerId = 1;
+  repeated int32 CardId = 2;
+}
+
+message UnitCardInfo
+{
+  map<int32, int32> Info = 1;
+}
+
+message CardInfos
+{
+  map<int64, UnitCardInfo> UnitCardInfos = 1;
+}
+
+// 服务器通知客户端当前回合结果
+message Room2C_BattleRoundsResult // IMessage
+{
+  int32 Round = 1;
+  map<int64, SelectInfo> SelectInfos = 2;
+  repeated CardInfos Infos = 3;
+}
+
+message SelectInfo
+{
+  repeated int32 HeroIds = 1;
+}
+
+// 客户端播放动画完成
+message C2Room_AnimationComplete // IRoomMessage
+{
+  int64 PlayerId = 1;
+}
+
+
+
+message Room2C_BattleResult // IMessage
+{
+  int64 WinPlayerId = 1;
+}
