@@ -4,8 +4,10 @@
 
 包括匹配，战斗，结算等功能。
 
-![[thisred/CatLog](https://github.com/thisred/CatLog/Image/match.png)]()
+![thisred/CatLog](https://raw.githubusercontent.com/thisred/CatLog/refs/heads/main/Image/match.png)
 
-![[thisred/CatLog](https://github.com/thisred/CatLog/Image/select.png)]()
+![选择英雄界面](https://raw.githubusercontent.com/thisred/CatLog/refs/heads/main/Image/select.png)
 
-![[thisred/CatLog](https://github.com/thisred/CatLog/Image/gameplay.png)]()
+![](https://raw.githubusercontent.com/thisred/CatLog/refs/heads/main/Image/gameplay.png)
+
+![](https://raw.githubusercontent.com/thisred/CatLog/refs/heads/main/Image/winner.png)
